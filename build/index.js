@@ -1,0 +1,14 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var Cart_1 = require("./Cart");
+var store = new Cart_1.StoreInventory();
+store.addItem('Potatoes', 'Vegetable', 10.00);
+store.addItem('Rice', 'Grain', 30.00);
+store.addItem('Coffee', 'Beans', 14.99);
+store.addItem('NewsPaper', 'NonEditable', 2.99);
+var cart = new Cart_1.Cart(store);
+cart.add('POTVEG');
+cart.add('RICGRA');
+cart.add('COFBEA');
+cart.add('NEWNON');
+console.log(cart.list_item);
