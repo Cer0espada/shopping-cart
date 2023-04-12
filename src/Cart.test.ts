@@ -1,24 +1,25 @@
-import { Errors, GroceryItem, StoreInventory, Cart} from './Cart';
+import { GroceryItem, StoreInventory, Cart } from './Cart';
+import { Errors } from './Error';
 //TODO: add in testing file for GroceryItem and StoreInventory Classes 
-    //1. add in testing of totalcost and quanitity 
+//1. add in testing of totalcost and quanitity 
 
 describe('My cart', () => {
     const store = new StoreInventory();
     store.addItem("Water", "Drink", 2.99);
 
 
-    let cart:Cart; 
+    let cart: Cart;
 
     beforeEach(() => {
         cart = new Cart(store);
     })
     it('is created with a store, but otherwise empty', () => {
-        
+
 
         expect(cart.itemsNum).toBe(0);
         expect(cart.store).toBeInstanceOf(StoreInventory)
         expect(cart.list).toBeInstanceOf(Set)
-      
+
         expect(cart.totalCost).toBe(0);
         expect([...cart.contents.values()]).toEqual([])
         expect(cart.list_item).toBeFalsy();
@@ -45,15 +46,15 @@ describe('My cart', () => {
     })
 
     test('test the addition of multiple items', () => {
-        let newStore = new StoreInventory();
+        const newStore = new StoreInventory();
         newStore.addItem('Water', 'Drink', 2.99);
         newStore.addItem('Chocolate Milk', 'Drink', 4.99);
         newStore.addItem('Teddy Bear', 'TOY', 7.99);
 
-       let cart = new Cart(newStore);
-       cart.add('WATDRI');
-       cart.add('CHODRI');
-       cart.add('TEDTOY');
+        const cart = new Cart(newStore);
+        cart.add('WATDRI');
+        cart.add('CHODRI');
+        cart.add('TEDTOY');
 
         expect(cart.itemsNum).toBe(3);
         expect(cart.list_item).toBe('Chocolate Milk, Teddy Bear, Water');
